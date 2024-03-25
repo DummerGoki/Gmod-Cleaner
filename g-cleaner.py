@@ -7,22 +7,29 @@ if steam.endswith("/"):
 else:
     sfix="/"
 #----------------------------------------------------------------------#.
-f1=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/downloadlists/" #|downloadlists -- downloaded server content 
-f2=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/downloads/"     #|downloads     -- downloaded server content
-f3=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/download/"      #|download      -- downloaded server content
-f4=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/data/"          #|data          -- stored addon data
-f5=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/cache/"         #|cache         -- Lua/Workshop cache
-f6=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/cfg/"           #|cfg           -- configuration
-f7=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/settings/"      #|settings      -- configuration
-f8=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/cl.db"          #|cl.db         -- SQLite database
-f9=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/sv.db"          #|sv.db         -- SQLite database
-fy=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/mn.db"          #|mn.db         -- SQLite database
+f1=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/downloadlists/" #|📂downloadlists -- downloaded server content 
+f2=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/downloads/"     #|📂downloads     -- downloaded server content
+f3=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/download/"      #|📂download      -- downloaded server content
+f4=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/data/"          #|📂data          -- stored addon data
+f5=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/cache/"         #|📂cache         -- Lua/Workshop cache
+f6=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/cfg/"           #|📂cfg           -- configuration
+f7=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/settings/"      #|📂settings      -- configuration
+f8=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/cl.db"          #|📄cl.db         -- SQLite database
+f9=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/sv.db"          #|📄sv.db         -- SQLite database
+F1=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/mn.db"          #|📄mn.db         -- SQLite database
+F2=f"{steam}{sfix}steamapps/common/GarrysMod/chromium.log"             #|📄chromium.log  -- Log file
+F3=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/addon"          #|📂addon         -- A folder with all addons
+F4=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/materials"      #|📂materials     -- A folder with all materials 
+F5=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/dupes"          #|📂dupes         -- Used for dupes
+F6=f"{steam}{sfix}steamapps/common/GarrysMod/garrysmod/fallbacks"      #|📂fallbacks     -- Used for fallbacks
+F7=f"{steam}{sfix}steamapps/common/GarrysMod/crashes"                  #|📂crashes       -- logs for crashes (?)
 #----------------------------------------------------------------------#'
 
 
 
 #here is the hl2.exe basicly just for starting gmod
 __main__=f"{steam}/steamapps/common/GarrysMod/hl2.exe"
+
 lg="""
    _____         _____ _                            
   / ____|       / ____| |                           
@@ -61,6 +68,30 @@ def remove_files():
                 except:
                     error=True
                 icon="⚙️"
+            elif (str(FX).endswith("addons/")):
+                try:
+                    shutil.rmtree(FX)
+                except:
+                    error=True
+                icon="📦"
+            elif (str(FX).endswith("materials/")):
+                try:
+                    shutil.rmtree(FX)
+                except:
+                    error=True
+                icon="🎨"
+            elif (str(FX).endswith("crashes/")):
+                try:
+                    shutil.rmtree(FX)
+                except:
+                    error=True
+                icon="🗑️"
+            elif (str(FX).endswith("fallbacks/") or str(FX).endswith("dupes/")):
+                try:
+                    shutil.rmtree(FX)
+                except:
+                    error=True
+                icon="🗃️"
             else:
                 try:
                     shutil.rmtree(FX)
@@ -68,13 +99,13 @@ def remove_files():
                     error=True
                 icon="📂"
             if (os.path.exists(FX)==False and error==False):
-                print(f"{icon}  ✅\033[0;92m {str(FX).replace(f'{steam}{sfix}steamapps/common/GarrysMod/garrysmod/','')}\033[0m")
+                print(f"{icon}  ✅\033[0;92m {str(FX).replace(f'{steam}{sfix}steamapps/common/GarrysMod/garrysmod/','').replace(f'{steam}{sfix}steamapps/common/GarrysMod/','').replace('/','')}\033[0m")
             if (os.path.exists(FX)==True and error==False or os.path.exists(FX)==False and error==True):
-                print(f"{icon}  ⚠️\033[0;93m {str(FX).replace(f'{steam}{sfix}steamapps/common/GarrysMod/garrysmod/','')}\033[0m")
+                print(f"{icon}  ⚠️\033[0;93m {str(FX).replace(f'{steam}{sfix}steamapps/common/GarrysMod/garrysmod/','').replace(f'{steam}{sfix}steamapps/common/GarrysMod/','').replace('/','')}\033[0m")
             if (os.path.exists(FX)==True and error==True):
-                print(f"{icon}  ❌\033[0;91m {str(FX).replace(f'{steam}{sfix}steamapps/common/GarrysMod/garrysmod/','')}\033[0m")
+                print(f"{icon}  ❌\033[0;91m {str(FX).replace(f'{steam}{sfix}steamapps/common/GarrysMod/garrysmod/','').replace(f'{steam}{sfix}steamapps/common/GarrysMod/','').replace('/','')}\033[0m")
         else:
-            print(f"📄  ⚠️\033[0;93m {str(FX).replace(f'{steam}{sfix}steamapps/common/GarrysMod/garrysmod/','')} Does not exist!\033[0m")
+            print(f"📄  ⚠️\033[0;93m {str(FX).replace(f'{steam}{sfix}steamapps/common/GarrysMod/garrysmod/','').replace(f'{steam}{sfix}steamapps/common/GarrysMod/','').replace('/','')} Does not exist!\033[0m")
 
     threads.append(threading.Thread(target=dx,args=[f1]))
     threads.append(threading.Thread(target=dx,args=[f2]))
@@ -86,9 +117,18 @@ def remove_files():
         threads.append(threading.Thread(target=dx,args=[f7]))
     else:
         pass
+    if (addon==1):
+        threads.append(threading.Thread(target=dx,args=[F4]))
+    if (material==1):
+        threads.append(threading.Thread(target=dx,args=[F5]))
+    threads.append(threading.Thread(target=dx,args=[F6]))
+    threads.append(threading.Thread(target=dx,args=[F7]))
     threads.append(threading.Thread(target=dx,args=[f8]))
     threads.append(threading.Thread(target=dx,args=[f9]))
-    threads.append(threading.Thread(target=dx,args=[fy]))
+    #---------------------------------------------------#
+    threads.append(threading.Thread(target=dx,args=[F1]))
+    threads.append(threading.Thread(target=dx,args=[F2]))
+    #---------------------------------------------------#
     for t in threads:
         t.start()
     for t in threads:
@@ -98,4 +138,5 @@ def remove_files():
     else:
         pass
 remove_files()
-getpass("Press Enter to close the Program:\n")
+print("#------------------------------------------------------------#")
+getpass("             Press Enter to close the Program:\n")
